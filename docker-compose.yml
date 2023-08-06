@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  my_kawaii:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      # Node.jsのグローバル変数: 開発用途なのでdevelopmentを指定
+      - NODE_ENV=development
+    volumes:
+      - ./my_kawaii:/usr/src/my_kawaii # ローカルをコンテナ内にマウント
+    command: sh -c "cd my_kawaii && yarn start"
+    ports:
+      - "3000:3000"
+    tty: true # CLI画面の操作をできるようにする
