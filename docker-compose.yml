@@ -8,8 +8,12 @@ services:
       # Node.jsのグローバル変数: 開発用途なのでdevelopmentを指定
       - NODE_ENV=development
     volumes:
-      - ./my_kawaii:/usr/src/my_kawaii # ローカルをコンテナ内にマウント
-    command: sh -c "cd my_kawaii && yarn start"
+    - ./my_kawaii:/workspaces/my_react/my_kawaii # ローカルをコンテナ内にマウント
+    # reactアプリができてから追記する
+    # VSCodeからの起動ではoverrideされ無効なコマンド（VSCode以外からの起動を考慮）
+    command: sh -c "cd /workspaces/my_react/my_kawaii && npm start"
+
     ports:
       - "3000:3000"
-    tty: true # CLI画面の操作をできるようにする
+    tty: true          #-t ttyを割り当てます。
+    stdin_open: true   #-i STDINを開きます。

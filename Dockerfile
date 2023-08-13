@@ -17,6 +17,12 @@ RUN apt-get install -y \
 	wget \
 	vim
 
+# WORKDIRを使う（RUN mkdir sample_dirはなくても作ってくれる）
+# WORKDIR /usr/src/my_kawaii
+WORKDIR /workspaces/my_react/my_kawaii
+# VOLUME /workspaces/my_react/my_kawaii
+# RUN cd /workspaces/my_react/my_kawaii && \
+#     npm start
 # 以下の書き方はsample_fileがルートフォルダに作成される。
 # sample_dirも作成されている。
 # 理由は1行ごとにレイヤーが作成されるのでtouch時にルートになってしまう
@@ -29,8 +35,6 @@ RUN apt-get install -y \
 #	cd /sample_dir && \
 #	touch sample_file
 
-# WORKDIRを使う（RUN mkdir sample_dirはなくても作ってくれる）
-WORKDIR /usr/src/my_kawaii
 
 # 環境変数
 # ENV key1 value
